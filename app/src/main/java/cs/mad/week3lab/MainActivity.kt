@@ -1,5 +1,6 @@
 package cs.mad.week3lab
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,15 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.FlashCardSetRecyclerView)
-        val flashCardSetAdapter = FlashcardSetAdapter()
-        recyclerView.adapter = flashCardSetAdapter
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        val historyButton: Button = findViewById(R.id.history_button)
 
-        val addButton: Button = findViewById(R.id.add_set)
-
-        addButton.setOnClickListener {
-            flashCardSetAdapter.addSet()
+        historyButton.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
         }
 
     }
