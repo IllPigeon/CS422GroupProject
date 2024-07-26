@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DecisionList(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name = "name") var name: String
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo(name = "name") var name: String?
 )

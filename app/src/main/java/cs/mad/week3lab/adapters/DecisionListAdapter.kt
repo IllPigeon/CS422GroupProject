@@ -23,12 +23,15 @@ class DecisionListAdapter(decisionList: List<DecisionList>): RecyclerView.Adapte
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // launches detail activity on click
+        val selectedDecisionList = data[position]
+        holder.textView.text=selectedDecisionList.name
+        // launches detail activity on click based on id of the set for the intent
         holder.itemView.setOnClickListener {
-            it.context.startActivity(Intent(it.context, DecisionActivity::class.java))
+            val context = holder.itemView.context
+            val intent = Intent(context, DecisionActivity::class.java)
+            intent.putExtra("LIST_ID", selectedDecisionList.id)
+            context.startActivity(intent)
         }
-        val item = data[position]
-        holder.textView.text=item.name
     }
 
     override fun getItemCount(): Int {
@@ -36,8 +39,8 @@ class DecisionListAdapter(decisionList: List<DecisionList>): RecyclerView.Adapte
         return data.size
     }
 
-    fun addDecisionList() {
-        data.add(DecisionList(data.size + 1, "New Decision List"))
+    fun addDecisionList(newDecisionList: DecisionList) {
+        data.add(newDecisionList)
         notifyItemInserted(data.size - 1)
     }
 }

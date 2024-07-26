@@ -10,10 +10,10 @@ import cs.mad.week3lab.data.entities.DecisionList
 
 @Dao
 interface DecisionListDao {
-    @Query("SELECT * FROM DecisionList ORDER BY id DESC")
+    @Query("SELECT * FROM DecisionList ORDER BY id ASC")
     fun getAll(): List<DecisionList>
     @Insert
-    fun insert(decisionList: DecisionList)
+    fun insert(decisionList: DecisionList): Long
     @Update
     fun update(decisionList: DecisionList)
     @Delete

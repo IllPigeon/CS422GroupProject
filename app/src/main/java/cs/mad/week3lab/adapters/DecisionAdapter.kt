@@ -29,8 +29,8 @@ class DecisionAdapter(decisions: List<Decision>): RecyclerView.Adapter<DecisionA
         return data.size
     }
 
-    fun addFlashcard() {
-       data.add(Decision(data.size + 1,"New Added Term", 0))
+    fun addDecision(newDecision: Decision) {
+       data.add(newDecision)
        notifyItemInserted(data.size - 1)
     }
 }
