@@ -13,11 +13,11 @@
         android:theme="@style/Theme.Week3Lab"
         tools:targetApi="33">
         <activity
-            android:name=".FlashcardSetDetailActivity"
+            android:name=".activities.DecisionActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

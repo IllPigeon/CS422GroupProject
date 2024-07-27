@@ -1,15 +1,15 @@
-package cs.mad.week3lab
+package cs.mad.week3lab.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import cs.mad.week3lab.entities.Flashcard
-import cs.mad.week3lab.entities.getFlashcards
+import cs.mad.week3lab.R
+import cs.mad.week3lab.data.entities.Decision
 
-class FlashcardAdapter(): RecyclerView.Adapter<FlashcardAdapter.ViewHolder>() {
-    private val data = getFlashcards().toMutableList()
+class DecisionAdapter(decisions: List<Decision>): RecyclerView.Adapter<DecisionAdapter.ViewHolder>() {
+    private val data = decisions.toMutableList()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val viewTerm = view.findViewById<TextView>(R.id.term_text)
@@ -22,15 +22,15 @@ class FlashcardAdapter(): RecyclerView.Adapter<FlashcardAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // connect data to view
         val item = data[position]
-        holder.viewTerm.text=item.term
+        holder.viewTerm.text=item.name
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    fun addFlashcard() {
-       data.add(Flashcard("New Added Term", "New Added Definition"))
+    fun addDecision(newDecision: Decision) {
+       data.add(newDecision)
        notifyItemInserted(data.size - 1)
     }
 }
