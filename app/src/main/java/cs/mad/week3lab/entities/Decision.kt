@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 @Entity
 data class Decision(
     @PrimaryKey(autoGenerate = true) val id: Long? = null,
-    var chosen: String,
+    var title: String,
     var options: List<String>
 )
 
