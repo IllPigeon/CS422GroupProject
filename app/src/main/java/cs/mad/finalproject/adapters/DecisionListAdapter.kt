@@ -1,4 +1,4 @@
-package cs.mad.week3lab.adapters
+package cs.mad.finalproject.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import cs.mad.week3lab.R
-import cs.mad.week3lab.activities.DecisionActivity
-import cs.mad.week3lab.data.entities.DecisionList
+import cs.mad.finalproject.R
+import cs.mad.finalproject.data.entities.DecisionList
 
 
 class DecisionListAdapter(decisionList: List<DecisionList>): RecyclerView.Adapter<DecisionListAdapter.ViewHolder>() {

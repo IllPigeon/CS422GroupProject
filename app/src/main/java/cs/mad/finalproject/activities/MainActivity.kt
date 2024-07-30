@@ -1,10 +1,10 @@
-package cs.mad.week3lab.activities
+package cs.mad.finalproject.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import cs.mad.week3lab.R
+import cs.mad.finalproject.R
 
 class MainActivity : AppCompatActivity() {
 

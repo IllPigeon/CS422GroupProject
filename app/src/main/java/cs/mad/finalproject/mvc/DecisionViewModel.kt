@@ -1,11 +1,11 @@
-package cs.mad.week3lab.mvc
+package cs.mad.finalproject.mvc
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import cs.mad.week3lab.entities.Decision
+import cs.mad.finalproject.entities.Decision
 import kotlinx.coroutines.launch
 
 class DecisionViewModel(private val repository: DecisionRepository): ViewModel() {

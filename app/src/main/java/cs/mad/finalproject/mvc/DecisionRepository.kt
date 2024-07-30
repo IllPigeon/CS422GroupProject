@@ -1,7 +1,7 @@
-package cs.mad.week3lab.mvc
+package cs.mad.finalproject.mvc
 
-import cs.mad.week3lab.entities.Decision
-import cs.mad.week3lab.entities.DecisionDao
+import cs.mad.finalproject.entities.Decision
+import cs.mad.finalproject.entities.DecisionDao
 import kotlinx.coroutines.flow.Flow
 
 class DecisionRepository(private val decisionDao: DecisionDao) {

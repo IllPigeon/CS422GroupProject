@@ -1,9 +1,9 @@
-package cs.mad.week3lab.adapters
+package cs.mad.finalproject.adapters
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import cs.mad.week3lab.entities.Decision
-import cs.mad.week3lab.mvc.DecisionViewModel
+import cs.mad.finalproject.entities.Decision
+import cs.mad.finalproject.mvc.DecisionViewModel
 
 class DecisionAdapter(private val viewModel: DecisionViewModel): RecyclerView.Adapter<DecisionAdapter.ViewHolder>() {
 

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'cs.mad.week3lab'
+    namespace 'cs.mad.finalproject'
     compileSdk 33
 
     defaultConfig {
-        applicationId "cs.mad.week3lab"
+        applicationId "cs.mad.finalproject"
         minSdk 24
         targetSdk 33
         versionCode 1
