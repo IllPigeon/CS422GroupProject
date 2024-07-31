@@ -1,12 +1,15 @@
 package cs.mad.finalproject.activities
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cs.mad.finalproject.adapters.HistoryAdapter
+import androidx.lifecycle.Observer
+import cs.mad.finalproject.R
 import cs.mad.finalproject.applications.DecisionApplication
 import cs.mad.finalproject.databinding.ActivityHistoryBinding
 import cs.mad.finalproject.mvc.HistoryViewModel
@@ -22,6 +25,11 @@ class HistoryActivity: AppCompatActivity() {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val backButton: Button = findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
         //call repository to get access to database to populate data
         val repository = (application as DecisionApplication).historyRepository
         val viewModelFactory = HistoryViewModelFactory(repository)
@@ -31,6 +39,12 @@ class HistoryActivity: AppCompatActivity() {
         adapter = HistoryAdapter(historyViewModel)
         binding.historyRecycler.adapter = adapter
         binding.historyRecycler.layoutManager = LinearLayoutManager(this)
+
+        historyViewModel.allHistory.observe(this, Observer { allHistory ->
+            allHistory?.let {
+                adapter.updateData(it)
+            }
+        })
 
         // swipe to delete
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

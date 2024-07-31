@@ -31,6 +31,12 @@ class HistoryAdapter(private val viewModel: HistoryViewModel): RecyclerView.Adap
 
     override fun getItemCount() = data.size
 
+    fun updateData(newData: List<History>) {
+        data.clear()
+        data.addAll(newData)
+        notifyDataSetChanged()
+    }
+
     fun removeAt(index: Int) {
         data.removeAt(index)
         viewModel.delete(data[index])

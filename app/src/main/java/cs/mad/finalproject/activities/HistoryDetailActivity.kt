@@ -1,9 +1,12 @@
 package cs.mad.finalproject.activities
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import cs.mad.finalproject.R
 import cs.mad.finalproject.adapters.HistoryAdapter
 import cs.mad.finalproject.adapters.HistoryDetailAdapter
 import cs.mad.finalproject.applications.DecisionApplication
@@ -20,6 +23,11 @@ class HistoryDetailActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val backButton: Button = findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         val repository = (application as DecisionApplication).historyRepository
         val viewModelFactory = HistoryViewModelFactory(repository)

@@ -25,4 +25,10 @@ class HistoryDetailAdapter(private val viewModel: HistoryViewModel): RecyclerVie
     }
 
     override fun getItemCount() = data.size
+
+    fun updateData(newData: List<String>) {
+       data.clear()
+       data.addAll(newData)
+       notifyDataSetChanged()
+    }
 }
