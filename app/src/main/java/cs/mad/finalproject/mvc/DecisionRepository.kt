@@ -12,6 +12,10 @@ class DecisionRepository(private val decisionDao: DecisionDao) {
         return decisionDao.getSnapshot()
     }
 
+    suspend fun getDecisionById(decisionId: Long): Decision {
+        return decisionDao.getDecisionById(decisionId)
+    }
+
     suspend fun insert(decision: Decision) {
         decisionDao.insert(decision)
     }
@@ -20,6 +24,9 @@ class DecisionRepository(private val decisionDao: DecisionDao) {
         decisionDao.update(decision)
     }
 
+    suspend fun updateOptions(newOptions: List<String>, decisionId: Long) {
+        decisionDao.updateOptions(newOptions, decisionId)
+    }
     suspend fun delete(decision: Decision) {
         decisionDao.delete(decision)
     }

@@ -19,12 +19,22 @@ class DecisionViewModel(private val repository: DecisionRepository): ViewModel()
         }
     }
 
+    suspend fun getDecisionById(decisionId: Long): Decision {
+        return withContext(Dispatchers.IO) {
+            repository.getDecisionById(decisionId)
+        }
+    }
+
     fun insert(decision: Decision) = viewModelScope.launch {
         repository.insert(decision)
     }
 
     fun update(decision: Decision) = viewModelScope.launch {
         repository.update(decision)
+    }
+
+    fun updateOptions(newOptions: List<String>, decisionId: Long) = viewModelScope.launch {
+        repository.updateOptions(newOptions, decisionId)
     }
 
     fun delete(decision: Decision) = viewModelScope.launch {

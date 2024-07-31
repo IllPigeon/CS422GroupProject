@@ -26,11 +26,17 @@ interface DecisionDao {
     @Query("SELECT * FROM decision")
     suspend fun getSnapshot(): List<Decision>
 
+    @Query("SELECT * FROM decision WHERE id = :decisionId")
+    suspend fun getDecisionById(decisionId: Long): Decision
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(decision: Decision)
 
     @Update
     suspend fun update(decision: Decision)
+
+    @Query("UPDATE decision SET options = :newOptions WHERE id =:decisionId")
+    suspend fun updateOptions(newOptions: List<String>, decisionId: Long)
 
     @Delete
     suspend fun delete(decision: Decision)

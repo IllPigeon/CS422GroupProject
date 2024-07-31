@@ -7,28 +7,32 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cs.mad.finalproject.R
-import cs.mad.finalproject.data.entities.DecisionList
+import cs.mad.finalproject.activities.DecisionDetailActivity
+import cs.mad.finalproject.adapters.DecisionAdapter.ViewHolder
+import cs.mad.finalproject.entities.Decision
+import cs.mad.finalproject.mvc.DecisionViewModel
 
 
-class DecisionListAdapter(decisionList: List<DecisionList>): RecyclerView.Adapter<DecisionListAdapter.ViewHolder>() {
-    private val data = decisionList.toMutableList()
+class DecisionListAdapter(private val viewModel: DecisionViewModel): RecyclerView.Adapter<DecisionListAdapter.ViewHolder>() {
+    private val data = mutableListOf<Decision>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val textView = view.findViewById<TextView>(R.id.title_text)
+        val textView = view.findViewById<TextView>(R.id.decision_set_name)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.flashcard_set_item, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
+        LayoutInflater.from(parent.context).inflate(R.layout.decision_item, parent, false)
     )
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val selectedDecisionList = data[position]
-        holder.textView.text=selectedDecisionList.name
-        // launches detail activity on click based on id of the set for the intent
+
+    override fun onBindViewHolder(holder: cs.mad.finalproject.adapters.DecisionListAdapter.ViewHolder, position: Int) {
+        val decision = data[position]
+        holder.textView.text = data[position].title
         holder.itemView.setOnClickListener {
-            val context = holder.itemView.context
-            val intent = Intent(context, DecisionActivity::class.java)
-            intent.putExtra("LIST_ID", selectedDecisionList.id)
+            val context = it.context
+            val intent = Intent(context, DecisionDetailActivity::class.java).apply {
+                putExtra("decision_id", decision.id)
+            }
             context.startActivity(intent)
         }
     }
@@ -38,8 +42,21 @@ class DecisionListAdapter(decisionList: List<DecisionList>): RecyclerView.Adapte
         return data.size
     }
 
-    fun addDecisionList(newDecisionList: DecisionList) {
+    fun updateData(newData: List<Decision>) {
+        data.clear()
+        data.addAll(newData)
+        notifyDataSetChanged()
+    }
+
+    fun addDecisionList(newDecisionList: Decision) {
         data.add(newDecisionList)
+        viewModel.insert(newDecisionList)
         notifyItemInserted(data.size - 1)
+    }
+
+    fun removeAt(index: Int) {
+        data.removeAt(index)
+        viewModel.delete(data[index])
+        notifyDataSetChanged()
     }
 }

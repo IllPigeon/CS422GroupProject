@@ -28,7 +28,6 @@ class HistoryDetailActivity: AppCompatActivity() {
         binding = ActivityHistoryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val backButton: Button = findViewById(R.id.back_button)
         backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
