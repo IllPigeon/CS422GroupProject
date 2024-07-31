@@ -18,9 +18,9 @@
 
     <Button
         android:id="@+id/history_button"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:text="History"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:text="≡"
         app:layout_contraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="10dp"

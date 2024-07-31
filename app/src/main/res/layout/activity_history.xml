@@ -25,4 +25,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/history_title" />
 
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:text="<"
+        app:layout_contraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf=""
+        android:layout_margin="10dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
