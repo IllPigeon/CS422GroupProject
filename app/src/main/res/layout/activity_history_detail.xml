@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/decision_set_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Decision Set Title"
@@ -24,6 +25,7 @@
             />
 
         <TextView
+            android:id="@+id/decision_made"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Decision Made"

@@ -23,9 +23,14 @@ class HistoryAdapter(private val viewModel: HistoryViewModel): RecyclerView.Adap
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val history = data[position]
         holder.textView.text = data[position].decisionMade
         holder.itemView.setOnClickListener {
-            it.context.startActivity(Intent(it.context, HistoryDetailActivity::class.java))
+            val context = it.context
+            val intent = Intent(context, HistoryDetailActivity::class.java).apply {
+                putExtra("history_id", history.id)
+            }
+            context.startActivity(intent)
         }
     }
 

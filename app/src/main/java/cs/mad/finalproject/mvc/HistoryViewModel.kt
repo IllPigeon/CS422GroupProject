@@ -6,10 +6,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import cs.mad.finalproject.entities.History
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HistoryViewModel(private val repository: HistoryRepository): ViewModel() {
     val allHistory: LiveData<List<History>> = repository.allHistory.asLiveData()
+
+    suspend fun getHistoryById(historyId: Long): History {
+        return withContext(Dispatchers.IO) {
+            repository.getHistoryById(historyId)
+        }
+    }
 
     fun insert(history: History) = viewModelScope.launch {
         repository.insert(history)

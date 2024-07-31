@@ -22,6 +22,9 @@ interface HistoryDao {
     @Query("SELECT * FROM history")
     fun getAll(): Flow<List<History>>
 
+    @Query("SELECT * FROM history WHERE id = :historyId")
+    suspend fun getHistoryById(historyId: Long): History
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(history: History)
 

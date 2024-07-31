@@ -8,6 +8,10 @@ class HistoryRepository(private val historyDao: HistoryDao) {
 
     val allHistory: Flow<List<History>> = historyDao.getAll()
 
+    suspend fun getHistoryById(historyId: Long): History {
+        return historyDao.getHistoryById(historyId)
+    }
+
     suspend fun insert(history: History) {
         historyDao.insert(history)
     }
