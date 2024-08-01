@@ -21,11 +21,11 @@ class DecisionListAdapter(private val viewModel: DecisionViewModel): RecyclerVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
-        LayoutInflater.from(parent.context).inflate(R.layout.decision_item, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.decision_set_item, parent, false)
     )
 
 
-    override fun onBindViewHolder(holder: cs.mad.finalproject.adapters.DecisionListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val decision = data[position]
         holder.textView.text = data[position].title
         holder.itemView.setOnClickListener {

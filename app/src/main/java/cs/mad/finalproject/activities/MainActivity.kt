@@ -14,8 +14,12 @@ import cs.mad.finalproject.adapters.DecisionAdapter
 import cs.mad.finalproject.adapters.DecisionListAdapter
 import cs.mad.finalproject.applications.DecisionApplication
 import cs.mad.finalproject.databinding.ActivityMainBinding
+import cs.mad.finalproject.entities.Decision
+import cs.mad.finalproject.entities.History
 import cs.mad.finalproject.mvc.DecisionViewModel
 import cs.mad.finalproject.mvc.DecisionViewModelFactory
+import cs.mad.finalproject.mvc.HistoryViewModel
+import cs.mad.finalproject.mvc.HistoryViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +43,19 @@ class MainActivity : AppCompatActivity() {
         val repository = (application as DecisionApplication).decisionRepository
         val viewModelFactory = DecisionViewModelFactory(repository)
         decisionViewModel = ViewModelProvider(this, viewModelFactory)[DecisionViewModel::class.java]
+
+        //TESTING BLOCK. DELETE BEFORE MERGING.
+        val historyRepository = (application as DecisionApplication).historyRepository
+        val historyViewModelFactory = HistoryViewModelFactory(historyRepository)
+        val historyViewModel = ViewModelProvider(this, historyViewModelFactory)[HistoryViewModel::class.java]
+
+        for (i in 1..20) {
+            val testList: List<String> = listOf(i.toString())
+            val newDecision: Decision = Decision(null, i.toString(), testList)
+            val newHistory: History = History(null, (i+1).toString(), i.toString(), testList)
+            decisionViewModel.insert(newDecision)
+            historyViewModel.insert(newHistory)
+        }
 
         //call adapter for recyclerview, pass in the view model so you have a way to access the database in it.
         adapter = DecisionListAdapter(decisionViewModel)

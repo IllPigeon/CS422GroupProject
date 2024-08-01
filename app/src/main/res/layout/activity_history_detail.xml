@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.HistoryDetailActivity">
 
-    <LinearLayout
-        android:id="@+id/info_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:id="@+id/decision_set_title"
             android:layout_width="match_parent"
@@ -22,6 +14,18 @@
             android:textSize="28sp"
             android:gravity="center"
             android:layout_marginBottom="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="Back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             />
 
         <TextView
@@ -33,9 +37,8 @@
             android:textColor="@color/purple_500"
             android:gravity="center"
             android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/decision_set_title"
             />
-
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/history_item_recycler"
@@ -43,17 +46,7 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_bar" />
-
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:text="<"
-        app:layout_contraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf=""
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/decision_made" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

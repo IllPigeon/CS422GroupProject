@@ -19,7 +19,7 @@ class DecisionAdapter(private val viewModel: DecisionViewModel): RecyclerView.Ad
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
-        LayoutInflater.from(parent.context).inflate(R.layout.decision_set_item, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.decision_item, parent, false)
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
