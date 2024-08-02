@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'cs.mad.week3lab'
+    namespace 'cs.mad.finalproject'
     compileSdk 33
 
     defaultConfig {
-        applicationId "cs.mad.week3lab"
+        applicationId "cs.mad.finalproject"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -31,7 +31,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
+    buildFeatures{
         viewBinding true
     }
 }
@@ -45,4 +45,8 @@ dependencies {
     implementation "androidx.room:room-runtime:2.5.0"
     kapt "androidx.room:room-compiler:2.5.0"
     implementation "androidx.room:room-ktx:2.5.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    implementation "com.google.code.gson:gson:2.8.9"
 }

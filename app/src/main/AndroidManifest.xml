@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".applications.DecisionApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +14,7 @@
         android:theme="@style/Theme.Week3Lab"
         tools:targetApi="33">
         <activity
-            android:name=".activities.DecisionActivity"
+            android:name=".activities.DecisionDetailActivity"
             android:exported="false">
         </activity>
         <activity
@@ -24,6 +25,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.HistoryActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".activities.HistoryDetailActivity"
+            android:exported="false">
         </activity>
     </application>
 
