@@ -1,7 +1,9 @@
 package cs.mad.finalproject.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +52,13 @@ class DecisionDetailActivity: AppCompatActivity() {
                e.printStackTrace()
                finish()
            }
+        }
+
+        //button functionality
+        val addButton: Button = findViewById(R.id.add_decision_button)
+
+        addButton.setOnClickListener {
+            adapter.addData()
         }
 
         //delete on swipe

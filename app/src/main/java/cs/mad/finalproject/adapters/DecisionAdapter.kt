@@ -28,6 +28,11 @@ class DecisionAdapter(private val viewModel: DecisionViewModel): RecyclerView.Ad
 
     override fun getItemCount() = data.size
 
+    fun addData() {
+        data.add("New option")
+        notifyDataSetChanged()
+    }
+
     fun updateData(newData: List<String>) {
         data.clear()
         data.addAll(newData)
