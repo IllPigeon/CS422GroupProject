@@ -61,6 +61,15 @@ class DecisionDetailActivity: AppCompatActivity() {
             adapter.addData()
         }
 
+        val decisionButton: Button = findViewById(R.id.make_decision_button)
+
+        //MAKE SURE TO CHANGE TO DECISION SCREEN INSTEAD OF HISTORY SCREEN
+        decisionButton.setOnClickListener {
+            val intent: Intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+        //MAKE SURE TO CHANGE TO DECISION SCREEN INSTEAD OF HISTORY SCREEN
+
         //delete on swipe
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
