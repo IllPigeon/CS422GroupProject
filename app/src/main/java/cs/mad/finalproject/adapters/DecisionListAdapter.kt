@@ -55,8 +55,8 @@ class DecisionListAdapter(private val viewModel: DecisionViewModel): RecyclerVie
     }
 
     fun removeAt(index: Int) {
-        data.removeAt(index)
         viewModel.delete(data[index])
+        data.removeAt(index)
         notifyDataSetChanged()
     }
 }
