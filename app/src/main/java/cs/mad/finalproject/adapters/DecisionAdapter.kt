@@ -34,7 +34,10 @@ class DecisionAdapter(private val viewModel: DecisionViewModel): RecyclerView.Ad
 
             val alert = AlertDialog.Builder(it.context)
                 .setCustomTitle(editDecision)
-                .setNeutralButton("Cancel") { dialog,_ ->
+                // Highlight decision in dialog so it can be changed just by typing
+                editDecision.selectAll()
+
+                alert.setNeutralButton("Cancel") { dialog,_ ->
                     dialog.dismiss()
                 }
                 .setPositiveButton("Save") { dialog,_ ->
