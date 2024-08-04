@@ -60,9 +60,9 @@ class MainActivity : AppCompatActivity() {
 
             builder.setPositiveButton("Create") { dialog, _ ->
                 val newListName = input.text.toString()
-                // Create a new DecisionList object with the entered name
-                val newDecisionList: Decision = Decision(null, newListName, emptyList())
-                val newHistory: History = History(null, newListName, newListName, emptyList())
+                // Create a new DecisionList object with the entered name, and empty parent list for stored strings.
+                val newDecisionList = Decision(null, newListName, emptyList())
+                val newHistory = History(null, newListName, newListName, emptyList())
                 // Insert the new DecisionList into the database using the ViewModel
                 decisionViewModel.insert(newDecisionList)
                 historyViewModel.insert(newHistory)
