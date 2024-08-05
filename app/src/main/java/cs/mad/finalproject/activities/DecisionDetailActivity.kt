@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -54,11 +56,35 @@ class DecisionDetailActivity: AppCompatActivity() {
            }
         }
 
-        //button functionality
+        // Create new option button
         val addButton: Button = findViewById(R.id.add_decision_button)
-
         addButton.setOnClickListener {
-            adapter.addData()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Create New Option")
+            val input = EditText(this)
+            builder.setView(input)
+
+            builder.setPositiveButton("Create") { dialog, _ ->
+                val newOptionName = input.text.toString()
+                lifecycleScope.launch {
+                    try {
+                        // Chosen Decision retrieved based on intent id
+                        val chosenDecision = decisionViewModel.getDecisionById(decisionId)
+                        // Retrieving the options based on chosenDecisionId
+                        val updatedOptions = chosenDecision.options.toMutableList()
+                        updatedOptions.add(newOptionName)
+                        decisionViewModel.updateOptions(updatedOptions, decisionId)
+                        //Updating adapter with new options here
+                        adapter.updateData(updatedOptions)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            builder.setNeutralButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.show()
         }
 
         val decisionButton: Button = findViewById(R.id.make_decision_button)
@@ -88,7 +114,5 @@ class DecisionDetailActivity: AppCompatActivity() {
                 adapter.removeAt(viewHolder.adapterPosition, decisionId)
             }
         }).attachToRecyclerView(binding.decisionRecycler)
-
-
     }
 }
