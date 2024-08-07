@@ -1,7 +1,12 @@
 package cs.mad.finalproject.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Button
+import android.widget.EditText
+import androidx.annotation.IntRange
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -52,6 +57,62 @@ class DecisionDetailActivity: AppCompatActivity() {
            }
         }
 
+        // Create new option button
+        val addButton: Button = findViewById(R.id.add_decision_button)
+        addButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Create New Option")
+            val input = EditText(this)
+            builder.setView(input)
+
+            builder.setPositiveButton("Create") { dialog, _ ->
+                val newOptionName = input.text.toString()
+                lifecycleScope.launch {
+                    try {
+                        // Chosen Decision retrieved based on intent id
+                        val chosenDecision = decisionViewModel.getDecisionById(decisionId)
+                        // Retrieving the options based on chosenDecisionId
+                        val updatedOptions = chosenDecision.options.toMutableList()
+                        updatedOptions.add(newOptionName)
+                        decisionViewModel.updateOptions(updatedOptions, decisionId)
+                        //Updating adapter with new options here
+                        adapter.updateData(updatedOptions)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            builder.setNeutralButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+
+        // Randomly choose decision from list and show decision chosen
+        val decisionButton: Button = findViewById(R.id.make_decision_button)
+        decisionButton.setOnClickListener {
+            lifecycleScope.launch{
+                try {
+                    val chosenDecisionList = decisionViewModel.getDecisionById(decisionId)
+                    val randomDecisionNumber: Int = IntRange(start = 0, endInclusive = chosenDecisionList.options.size-1).random()
+                    val decisionSelected = chosenDecisionList.options[randomDecisionNumber]
+                    val textView: TextView = findViewById(R.id.decision_set_name)
+                    textView.text = decisionSelected
+//                    val intent = Intent(this, HistoryActivity::class.java)
+//                    startActivity(intent)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+        val backButton: Button = findViewById(R.id.back_button)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         //delete on swipe
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
@@ -63,7 +124,5 @@ class DecisionDetailActivity: AppCompatActivity() {
                 adapter.removeAt(viewHolder.adapterPosition, decisionId)
             }
         }).attachToRecyclerView(binding.decisionRecycler)
-
-
     }
 }
