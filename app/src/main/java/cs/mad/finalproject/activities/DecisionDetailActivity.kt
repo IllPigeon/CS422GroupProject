@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Button
 import android.widget.EditText
+import androidx.annotation.IntRange
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -87,14 +88,23 @@ class DecisionDetailActivity: AppCompatActivity() {
             builder.show()
         }
 
+        // Randomly choose decision from list and show decision chosen
         val decisionButton: Button = findViewById(R.id.make_decision_button)
-
-        //MAKE SURE TO CHANGE TO DECISION SCREEN INSTEAD OF HISTORY SCREEN
         decisionButton.setOnClickListener {
-            val intent = Intent(this, HistoryActivity::class.java)
-            startActivity(intent)
+            lifecycleScope.launch{
+                try {
+                    val chosenDecisionList = decisionViewModel.getDecisionById(decisionId)
+                    val randomDecisionNumber: Int = IntRange(start = 0, endInclusive = chosenDecisionList.options.size-1).random()
+                    val decisionSelected = chosenDecisionList.options[randomDecisionNumber]
+                    val textView: TextView = findViewById(R.id.decision_set_name)
+                    textView.text = decisionSelected
+//                    val intent = Intent(this, HistoryActivity::class.java)
+//                    startActivity(intent)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
-        //MAKE SURE TO CHANGE TO DECISION SCREEN INSTEAD OF HISTORY SCREEN
 
         val backButton: Button = findViewById(R.id.back_button)
 

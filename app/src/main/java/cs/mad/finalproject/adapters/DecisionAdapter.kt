@@ -1,5 +1,6 @@
 package cs.mad.finalproject.adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class DecisionAdapter(private val viewModel: DecisionViewModel): RecyclerView.Ad
         LayoutInflater.from(parent.context).inflate(R.layout.decision_item, parent, false)
     )
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = data[position]
 
