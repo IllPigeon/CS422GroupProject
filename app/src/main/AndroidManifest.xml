@@ -34,6 +34,10 @@
             android:name=".activities.HistoryDetailActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".activities.DecisionResultActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

@@ -96,10 +96,18 @@ class DecisionDetailActivity: AppCompatActivity() {
                     val chosenDecisionList = decisionViewModel.getDecisionById(decisionId)
                     val randomDecisionNumber: Int = IntRange(start = 0, endInclusive = chosenDecisionList.options.size-1).random()
                     val decisionSelected = chosenDecisionList.options[randomDecisionNumber]
-                    val textView: TextView = findViewById(R.id.decision_set_name)
-                    textView.text = decisionSelected
+                    //val textView: TextView = findViewById(R.id.decision_set_name)
+                    //textView.text = decisionSelected
+
+                    //this was already commented out
 //                    val intent = Intent(this, HistoryActivity::class.java)
 //                    startActivity(intent)
+                    /*****************/
+                    val intent = Intent(this@DecisionDetailActivity, DecisionResultActivity::class.java).apply {
+                        putExtra("decision_made", decisionSelected)
+                    }
+                    startActivity(intent)
+
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
