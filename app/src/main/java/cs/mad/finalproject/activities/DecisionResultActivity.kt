@@ -2,10 +2,13 @@ package cs.mad.finalproject.activities
 
 
 //do I have to use decisiondb or decisiondao here?
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import cs.mad.finalproject.R
 import cs.mad.finalproject.applications.DecisionApplication
 import cs.mad.finalproject.databases.DecisionDatabase
 import cs.mad.finalproject.databinding.ActivityDecisionResultBinding
@@ -27,6 +30,17 @@ class DecisionResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDecisionResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val backButton: Button = findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        val historyButton: Button = findViewById(R.id.history_button)
+        historyButton.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
 
 
         val repository = (application as DecisionApplication).historyRepository
