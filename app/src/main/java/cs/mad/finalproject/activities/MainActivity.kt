@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var decisionViewModel: DecisionViewModel
-    private lateinit var historyViewModel: HistoryViewModel
     private lateinit var adapter: DecisionListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +45,6 @@ class MainActivity : AppCompatActivity() {
         val repository = (application as DecisionApplication).decisionRepository
         val viewModelFactory = DecisionViewModelFactory(repository)
         decisionViewModel = ViewModelProvider(this, viewModelFactory)[DecisionViewModel::class.java]
-        // History repository
-        val historyRepository = (application as DecisionApplication).historyRepository
-        val historyViewModelFactory = HistoryViewModelFactory(historyRepository)
-        historyViewModel = ViewModelProvider(this, historyViewModelFactory)[HistoryViewModel::class.java]
 
         val addButton: Button = findViewById(R.id.add_button)
         addButton.setOnClickListener {
@@ -62,10 +57,8 @@ class MainActivity : AppCompatActivity() {
                 val newListName = input.text.toString()
                 // Create a new DecisionList object with the entered name, and empty parent list for stored strings.
                 val newDecisionList = Decision(null, newListName, emptyList())
-                val newHistory = History(null, newListName, newListName, emptyList())
                 // Insert the new DecisionList into the database using the ViewModel
                 decisionViewModel.insert(newDecisionList)
-                historyViewModel.insert(newHistory)
             }
             builder.setNeutralButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
@@ -73,18 +66,6 @@ class MainActivity : AppCompatActivity() {
             builder.show()
         }
 
-        //TESTING BLOCK. DELETE BEFORE MERGING.
-//        val historyRepository = (application as DecisionApplication).historyRepository
-//        val historyViewModelFactory = HistoryViewModelFactory(historyRepository)
-//        val historyViewModel = ViewModelProvider(this, historyViewModelFactory)[HistoryViewModel::class.java]
-//
-//        for (i in 1..20) {
-//            val testList: List<String> = listOf(i.toString())
-//            val newDecision: Decision = Decision(null, i.toString(), testList)
-//            val newHistory: History = History(null, (i+1).toString(), i.toString(), testList)
-//            decisionViewModel.insert(newDecision)
-//            historyViewModel.insert(newHistory)
-//        }
 
         //call adapter for recyclerview, pass in the view model so you have a way to access the database in it.
         adapter = DecisionListAdapter(decisionViewModel)

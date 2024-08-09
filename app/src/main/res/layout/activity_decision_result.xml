@@ -6,6 +6,26 @@
     tools:context=".activities.DecisionResultActivity"
     android:background="#53A1F1">
 
+    <Button
+        android:id="@+id/history_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="≡"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="Back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
     <!--    <Button-->
     <!--        android:id="@+id/button"-->
     <!--        android:layout_width="wrap_content"-->
