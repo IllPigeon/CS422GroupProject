@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HistoryActivity">
+    tools:context=".activities.HistoryActivity"
+    android:background="#53A1F1">
 
     <TextView
+        android:fontFamily="@font/bubblegum_sans"
         android:id="@+id/history_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,8 +22,13 @@
         />
 
     <Button
+        android:background="@drawable/buttonsedges"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
         android:id="@+id/back_button"
-        android:layout_width="50dp"
+        android:fontFamily="@font/dynapuff"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="Back"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,6 +36,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:fontFamily="@font/amarante"
         android:id="@+id/history_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"

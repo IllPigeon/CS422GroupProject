@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:textSize="18sp"
     android:padding="20dp"
-    android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
+    android:background="@drawable/decisionitemedge"
+    android:fontFamily="@font/amaranth"
     />
