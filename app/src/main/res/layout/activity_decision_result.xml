@@ -7,6 +7,7 @@
     android:background="#53A1F1">
 
     <Button
+        android:background="@drawable/buttonsedges"
         android:id="@+id/history_button"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -17,8 +18,11 @@
         />
 
     <Button
+        android:fontFamily="@font/dynapuff"
+        android:textStyle="bold"
+        android:background="@drawable/buttonsedges"
         android:id="@+id/back_button"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:text="Back"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,46 +30,36 @@
         android:layout_margin="10dp"
         />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/button"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:onClick="back"-->
-    <!--        android:text="Back"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/decisionTextView"-->
-    <!--        app:layout_constraintVertical_bias="0.5"-->
-    <!--        android:background="#9CC8F5"/>-->
-
     <ImageView
         android:id="@+id/decisionimage"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/resultexclam"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/decisionTextView"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 
     <TextView
+
+        android:fontFamily="@font/modak"
         android:id="@+id/decisionTextView"
-        android:layout_width="328dp"
-        android:layout_height="384dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/decisionresultedge"
         android:gravity="center"
+        android:padding="30dp"
         android:shadowColor="#8F55DB"
         android:shadowDx="8"
         android:shadowDy="8"
         android:shadowRadius="4"
         android:textColor="#000000"
-        android:textSize="33sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/decisionimage"
+        tools:layout_editor_absoluteX="10dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/amarante</item>
+        <item>@font/amaranth</item>
+        <item>@font/bubblegum_sans</item>
+        <item>@font/cherry_bomb_one</item>
+        <item>@font/dynapuff</item>
+        <item>@font/happy_monkey</item>
+        <item>@font/modak</item>
+        <item>@font/monofett</item>
+        <item>@font/press_start_2p</item>
+    </array>
+</resources>
